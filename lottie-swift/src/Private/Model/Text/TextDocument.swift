@@ -7,46 +7,46 @@
 
 import Foundation
 
-enum TextJustification: Int, Codable {
+public enum TextJustification: Int, Codable {
   case left
   case right
   case center
 }
 
-final class TextDocument: Codable {
+public final class TextDocument: Codable {
   
   /// The Text
-  let text: String
+  public let text: String
   
   /// The Font size
-  let fontSize: Double
+  public let fontSize: Double
   
   /// The Font Family
-  let fontFamily: String
+  public let fontFamily: String
   
   /// Justification
-  let justification: TextJustification
+  public let justification: TextJustification
   
   /// Tracking
-  let tracking: Int
+  public let tracking: Int
   
   /// Line Height
-  let lineHeight: Double
+  public let lineHeight: Double
   
   /// Baseline
-  let baseline: Double?
+  public let baseline: Double?
   
   /// Fill Color data
-  let fillColorData: Color
+  public let fillColorData: Color
   
   /// Scroke Color data
-  let strokeColorData: Color?
+  public let strokeColorData: Color?
   
   /// Stroke Width
-  let strokeWidth: Double?
+  public let strokeWidth: Double?
   
   /// Stroke Over Fill
-  let strokeOverFill: Bool?
+  public let strokeOverFill: Bool?
   
   private enum CodingKeys : String, CodingKey {
     case text = "t"

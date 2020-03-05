@@ -63,7 +63,7 @@ extension KeypathSearchable {
     return nil
   }
   
-  func logKeypaths(for keyPath: AnimationKeypath?) {
+  public func logKeypaths(for keyPath: AnimationKeypath?) {
     let newKeypath: AnimationKeypath
     if let previousKeypath = keyPath {
       newKeypath = previousKeypath.appendingKey(keypathName)
@@ -78,7 +78,20 @@ extension KeypathSearchable {
       child.logKeypaths(for: newKeypath)
     }
   }
+  
+  func keypathString(for keyPath: AnimationKeypath?) -> String {
+    let newKeypath: AnimationKeypath
+    if let previousKeypath = keyPath {
+      newKeypath = previousKeypath.appendingKey(keypathName)
+    } else {
+      newKeypath = AnimationKeypath(keys: [keypathName])
+    }
+    return newKeypath.fullPath
+  }
+
 }
+
+
 
 extension AnimationKeypath {
   var currentKey: String? {

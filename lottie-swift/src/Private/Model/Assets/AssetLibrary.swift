@@ -7,15 +7,15 @@
 
 import Foundation
 
-class AssetLibrary: Codable {
+public class AssetLibrary: Codable {
   
   /// The Assets
-  let assets: [String : Asset]
+  public let assets: [String : Asset]
   
-  let imageAssets: [String : ImageAsset]
-  let precompAssets: [String : PrecompAsset]
+  public let imageAssets: [String : ImageAsset]
+  public let precompAssets: [String : PrecompAsset]
   
-  required init(from decoder: Decoder) throws {
+  public required init(from decoder: Decoder) throws {
     var container = try decoder.unkeyedContainer()
     var containerForKeys = container
     
@@ -41,7 +41,7 @@ class AssetLibrary: Codable {
     self.imageAssets = imageAssets
   }
   
-  func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: Encoder) throws {
     var container = encoder.unkeyedContainer()
     try container.encode(contentsOf: Array(assets.values))
   }

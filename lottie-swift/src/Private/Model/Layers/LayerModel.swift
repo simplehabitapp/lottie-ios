@@ -67,13 +67,13 @@ public enum BlendMode: Int, Codable {
 /**
  A base top container for shapes, images, and other view objects.
  */
-class LayerModel: Codable {
+public class LayerModel: Codable {
   
   /// The readable name of the layer
-  let name: String
+  public let name: String
   
   /// The index of the layer
-  let index: Int
+  public let index: Int
   
   /// The type of the layer.
   let type: LayerType
@@ -93,7 +93,7 @@ class LayerModel: Codable {
   let transform: Transform
   
   /// The index of the parent layer, if applicable.
-  let parent: Int?
+  public let parent: Int?
   
   /// The blending mode for the layer
   let blendMode: BlendMode
@@ -123,7 +123,7 @@ class LayerModel: Codable {
     case matte = "tt"
   }
   
-  required init(from decoder: Decoder) throws {
+  public required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: LayerModel.CodingKeys.self)
     self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "Layer"
     self.index = try container.decode(Int.self, forKey: .index)

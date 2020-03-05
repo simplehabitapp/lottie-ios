@@ -8,19 +8,19 @@
 import Foundation
 
 /// An item that define an ellipse shape
-class Rectangle: ShapeItem {
+public class Rectangle: ShapeItem {
   
   /// The direction of the rect.
-  let direction: PathDirection
+  public let direction: PathDirection
   
   /// The position
-  let position: KeyframeGroup<Vector3D>
+  public let position: KeyframeGroup<Vector3D>
   
   /// The size
-  let size: KeyframeGroup<Vector3D>
+  public let size: KeyframeGroup<Vector3D>
   
   /// The Corner radius of the rectangle
-  let cornerRadius: KeyframeGroup<Vector1D>
+  public let cornerRadius: KeyframeGroup<Vector1D>
   
   private enum CodingKeys : String, CodingKey {
     case direction = "d"
@@ -29,7 +29,7 @@ class Rectangle: ShapeItem {
     case cornerRadius = "r"
   }
   
-  required init(from decoder: Decoder) throws {
+  public required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: Rectangle.CodingKeys.self)
     self.direction = try container.decodeIfPresent(PathDirection.self, forKey: .direction) ?? .clockwise
     self.position = try container.decode(KeyframeGroup<Vector3D>.self, forKey: .position)
@@ -38,7 +38,7 @@ class Rectangle: ShapeItem {
     try super.init(from: decoder)
   }
   
-  override func encode(to encoder: Encoder) throws {
+  public override func encode(to encoder: Encoder) throws {
     try super.encode(to: encoder)
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(direction, forKey: .direction)

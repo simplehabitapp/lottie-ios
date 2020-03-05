@@ -42,7 +42,7 @@ public class Animation: Codable {
   let height: Int
   
   /// The list of animation layers
-  let layers: [LayerModel]
+  public let layers: [LayerModel]
   
   /// The list of glyphs used for text rendering
   let glyphs: [Glyph]?
@@ -51,11 +51,11 @@ public class Animation: Codable {
   let fonts: FontList?
   
   /// Asset Library
-  let assetLibrary: AssetLibrary?
+  public let assetLibrary: AssetLibrary?
   
   /// Markers
-  let markers: [Marker]?
-  let markerMap: [String : Marker]?
+  public let markers: [Marker]?
+  public let markerMap: [String : Marker]?
   
   enum CodingKeys : String, CodingKey {
     case version = "v"

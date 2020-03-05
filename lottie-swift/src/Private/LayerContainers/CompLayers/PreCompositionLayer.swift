@@ -8,6 +8,8 @@
 import Foundation
 import QuartzCore
 
+public var textNodes: [String: TextDocument] = [:]
+
 class PreCompositionLayer: CompositionLayer {
   
   let frameRate: CGFloat
@@ -43,6 +45,13 @@ class PreCompositionLayer: CompositionLayer {
     var mattedLayer: CompositionLayer? = nil
     
     for layer in layers.reversed() {
+    
+      if let textLayer = layer as? TextCompositionLayer {
+        if let textDocument = textLayer.textDocument?.keyframes.first?.value {
+            textNodes[layer.keypathName] = textDocument
+        }
+      }
+      
       layer.bounds = bounds
       animationLayers.append(layer)
       if let imageLayer = layer as? ImageCompositionLayer {

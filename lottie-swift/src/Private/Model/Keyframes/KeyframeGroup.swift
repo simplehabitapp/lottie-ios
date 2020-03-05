@@ -15,23 +15,23 @@ import Foundation
  This helper object is needed to properly decode the json.
  */
 
-class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
+public class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
   
-  let keyframes: [Keyframe<T>]
+  public let keyframes: [Keyframe<T>]
   
   private enum KeyframeWrapperKey: String, CodingKey {
     case keyframeData = "k"
   }
   
-  init(keyframes: [Keyframe<T>]) {
+  public init(keyframes: [Keyframe<T>]) {
     self.keyframes = keyframes
   }
   
-  init(_ value: T) {
+  public init(_ value: T) {
     self.keyframes = [Keyframe(value)]
   }
 
-  required init(from decoder: Decoder) throws {
+  public required init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: KeyframeWrapperKey.self)
     
     if let keyframeData: T = try? container.decode(T.self, forKey: .keyframeData) {
@@ -80,7 +80,7 @@ class KeyframeGroup<T>: Codable where T: Codable, T: Interpolatable {
     }
   }
   
-  func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: KeyframeWrapperKey.self)
     
     if keyframes.count == 1 {

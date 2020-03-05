@@ -38,15 +38,15 @@ extension CGFloat: Interpolatable {
    
    1. The amount can be greater than one and less than zero. The interpolation will not be clipped.
    */
-  func interpolateTo(_ to: CGFloat, amount: CGFloat) -> CGFloat {
+  public func interpolateTo(_ to: CGFloat, amount: CGFloat) -> CGFloat {
     return self + ((to - self) * CGFloat(amount))
   }
   
-  func interpolateTo(_ to: CGFloat, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> CGFloat {
+  public func interpolateTo(_ to: CGFloat, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> CGFloat {
     return interpolateTo(to, amount: amount)
   }
   
-  func remap(fromLow: CGFloat, fromHigh: CGFloat, toLow: CGFloat, toHigh: CGFloat) -> CGFloat {
+  public func remap(fromLow: CGFloat, fromHigh: CGFloat, toLow: CGFloat, toHigh: CGFloat) -> CGFloat {
     return toLow + (self - fromLow) * (toHigh - toLow) / (fromHigh - fromLow)
   }
   
@@ -55,7 +55,7 @@ extension CGFloat: Interpolatable {
    
    1. The order of arguments does not matter.
    */
-  func clamp(_ a: CGFloat, _ b: CGFloat) -> CGFloat {
+  public func clamp(_ a: CGFloat, _ b: CGFloat) -> CGFloat {
     return CGFloat(Double(self).clamp(Double(a), Double(b)))
   }
   
@@ -63,12 +63,12 @@ extension CGFloat: Interpolatable {
    Returns the difference between the receiver and the given number.
    - Parameter absolute: If *true* (Default) the returned value will always be positive.
    */
-  func diff(_ a: CGFloat, absolute: Bool = true) -> CGFloat {
+  public func diff(_ a: CGFloat, absolute: Bool = true) -> CGFloat {
     return absolute ? abs(a - self) : a - self
   }
   
-  func toRadians() -> CGFloat { return self * .pi / 180 }
-  func toDegrees() -> CGFloat { return self * 180 / .pi }
+  public func toRadians() -> CGFloat { return self * .pi / 180 }
+  public func toDegrees() -> CGFloat { return self * 180 / .pi }
   
 }
 
@@ -88,15 +88,15 @@ extension Double: Interpolatable {
    
    1. The amount can be greater than one and less than zero. The interpolation will not be clipped.
    */
-  func interpolateTo(_ to: Double, amount: CGFloat) -> Double {
+  public func interpolateTo(_ to: Double, amount: CGFloat) -> Double {
     return self + ((to - self) * Double(amount))
   }
   
-  func interpolateTo(_ to: Double, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> Double {
+  public func interpolateTo(_ to: Double, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> Double {
     return interpolateTo(to, amount: amount)
   }
   
-  func remap(fromLow: Double, fromHigh: Double, toLow: Double, toHigh: Double) -> Double {
+  public func remap(fromLow: Double, fromHigh: Double, toLow: Double, toHigh: Double) -> Double {
     return toLow + (self - fromLow) * (toHigh - toLow) / (fromHigh - fromLow)
   }
   
@@ -105,7 +105,7 @@ extension Double: Interpolatable {
    
    1. The order of arguments does not matter.
    */
-  func clamp(_ a: Double, _ b: Double) -> Double {
+  public func clamp(_ a: Double, _ b: Double) -> Double {
     let minValue = a <= b ? a : b
     let maxValue = a <= b ? b : a
     return max(min(self, maxValue), minValue)
@@ -477,7 +477,7 @@ extension CGPoint: Interpolatable {
     return false
   }
   
-  func interpolateTo(_ to: CGPoint, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> CGPoint {
+  public func interpolateTo(_ to: CGPoint, amount: CGFloat, spatialOutTangent: CGPoint?, spatialInTangent: CGPoint?) -> CGPoint {
     guard let outTan = spatialOutTangent,
       let inTan = spatialInTangent else {
         return interpolate(to, amount: amount)

@@ -16,10 +16,10 @@ class DisabledTextLayer: CATextLayer {
   }
 }
 
-class TextCompositionLayer: CompositionLayer {
+public class TextCompositionLayer: CompositionLayer {
   
   let rootNode: TextAnimatorNode?
-  let textDocument: KeyframeInterpolator<TextDocument>?
+  public let textDocument: KeyframeInterpolator<TextDocument>?
   
   let textLayer: DisabledTextLayer = DisabledTextLayer()
   
@@ -34,7 +34,7 @@ class TextCompositionLayer: CompositionLayer {
     super.init(layer: textLayer, size: .zero)
     contentsLayer.addSublayer(self.textLayer)
     self.textLayer.masksToBounds = false
-    
+
   }
   
   required init?(coder aDecoder: NSCoder) {

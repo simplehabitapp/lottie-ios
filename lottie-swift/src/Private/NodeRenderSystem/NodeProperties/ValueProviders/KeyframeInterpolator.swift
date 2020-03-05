@@ -9,14 +9,14 @@ import Foundation
 import CoreGraphics
 
 /// A value provider that produces a value at Time from a group of keyframes
-class KeyframeInterpolator<ValueType>: AnyValueProvider where ValueType: Interpolatable {
+public class KeyframeInterpolator<ValueType>: AnyValueProvider where ValueType: Interpolatable {
   
   init(keyframes: [Keyframe<ValueType>]) {
     self.keyframes = keyframes
   }
-  let keyframes: [Keyframe<ValueType>]
+  public let keyframes: [Keyframe<ValueType>]
   
-  var valueType: Any.Type {
+  public var valueType: Any.Type {
     return ValueType.self
   }
   
@@ -38,7 +38,7 @@ class KeyframeInterpolator<ValueType>: AnyValueProvider where ValueType: Interpo
    - If a value delegate is set
    - If leading and trailing are both nil.
    */
-  func hasUpdate(frame: CGFloat) -> Bool {
+  public func hasUpdate(frame: CGFloat) -> Bool {
     if lastUpdatedFrame == nil {
       return true
     }
@@ -67,7 +67,7 @@ class KeyframeInterpolator<ValueType>: AnyValueProvider where ValueType: Interpo
   
   fileprivate var lastUpdatedFrame: CGFloat?
   
-  func value(frame: CGFloat) -> Any {
+  public func value(frame: CGFloat) -> Any {
     // First set the keyframe span for the frame.
     self.updateSpanIndices(frame: frame)
     lastUpdatedFrame = frame

@@ -12,10 +12,10 @@ import CoreGraphics
  Keyframe represents a point in time and is the container for datatypes.
  Note: This is a parent class and should not be used directly.
  */
-struct Keyframe<T: Interpolatable> {
+public struct Keyframe<T: Interpolatable> {
   
   /// The value of the keyframe
-  let value: T
+  public let value: T
   /// The time in frames of the keyframe.
   let time: CGFloat
   /// A hold keyframe freezes interpolation until the next keyframe that is not a hold.
